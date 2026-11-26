@@ -1,0 +1,29 @@
+ChartAdept
+Copyright 2026 ChartAdept authors
+
+The original code in this repository is licensed under Apache License 2.0.
+Third-party software, model weights, benchmarks, and evaluation rubrics retain
+their respective licenses and notices.
+
+Base model: Qwen3-VL-4B-Instruct, Qwen Team, Apache License 2.0.
+https://huggingface.co/Qwen/Qwen3-VL-4B-Instruct
+
+Training integrations use LLaMA-Factory, VERL, DeepSpeed, Transformers, and
+vLLM. ChartAdept's VERL extensions in chartadept/rl/ adapt the upstream
+actor, rollout, and reward interfaces; these dependencies are installed
+separately and are not vendored here.
+https://github.com/hiyouga/LLaMA-Factory
+https://github.com/volcengine/verl
+https://github.com/deepspeedai/DeepSpeed
+https://github.com/huggingface/transformers
+https://github.com/vllm-project/vllm
+
+Evaluation uses the ChartVerse-style CompassVerifier rubric. The helper
+scripts/fetch_compass_rubric.py retrieves the prompt constants from the
+upstream evaluation implementation; that third-party prompt is not
+relicensed or bundled as original ChartAdept code.
+https://github.com/starriver030515/ChartVerse/blob/main/eval/verify.py
+
+The three qualitative examples describe held-out CharXiv-RQ trajectories.
+Benchmark images are obtained separately from CharXiv and are not bundled.
+https://github.com/princeton-nlp/CharXiv

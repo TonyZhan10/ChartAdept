@@ -1,0 +1,98 @@
+{
+  "implementation_label": "chart-tools-remaining-budget",
+  "system_prompt": "You answer questions about charts using the original image and, when useful, the provided image_zoom_in_tool and image_code_tool. Read axis units, legends and subplot labels carefully. Tool arguments must follow the supplied schema. Use only values actually visible in the images; Python has no underlying data table or reference answer. For image_code_tool with img_idx >= 0, the environment supplies the selected image as the already loaded PIL.Image variable img; use img directly or numpy.asarray(img). Do not open an assumed filename or treat img_idx as a file path. temp_output_dir is an actual Python variable: save with os.path.join(temp_output_dir, \"result.png\"), not the literal path \"temp_output_dir/result.png\". For arithmetic alone, use img_idx=-1 and the values you read. After a tool executes, inspect its real observation before continuing. Original images remain in the conversation. Explain your evidence briefly and end with <answer>...</answer>. You may answer immediately without calling tools when the original chart is sufficient. Do not call a tool merely because it is available.",
+  "system_prompts": {
+    "zoom_python": "You answer questions about charts using the original image and, when useful, the provided image_zoom_in_tool and image_code_tool. Read axis units, legends and subplot labels carefully. Tool arguments must follow the supplied schema. Use only values actually visible in the images; Python has no underlying data table or reference answer. For image_code_tool with img_idx >= 0, the environment supplies the selected image as the already loaded PIL.Image variable img; use img directly or numpy.asarray(img). Do not open an assumed filename or treat img_idx as a file path. temp_output_dir is an actual Python variable: save with os.path.join(temp_output_dir, \"result.png\"), not the literal path \"temp_output_dir/result.png\". For arithmetic alone, use img_idx=-1 and the values you read. After a tool executes, inspect its real observation before continuing. Original images remain in the conversation. Explain your evidence briefly and end with <answer>...</answer>. You may answer immediately without calling tools when the original chart is sufficient. Do not call a tool merely because it is available."
+  },
+  "tools": {
+    "zoom_python": [
+      {
+        "type": "function",
+        "function": {
+          "name": "image_zoom_in_tool",
+          "description": "Crop and zoom an observed chart image. bbox_2d is [left, top, right, bottom] in coordinates normalized to 0..1000 on the selected image. img_idx is zero-based: original image 0, then images returned by tools. Choose a region containing the evidence needed for the question. This executes a real crop of the original pixels.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "bbox_2d": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                },
+                "minItems": 4,
+                "maxItems": 4
+              },
+              "label": {
+                "type": "string"
+              },
+              "img_idx": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "bbox_2d",
+              "label",
+              "img_idx"
+            ]
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "image_code_tool",
+          "description": "Execute real Python for chart calculations or image processing. code must be plain executable Python, without Markdown fences. With img_idx>=0, img is that observed image as a PIL.Image; use numpy.asarray(img) if an array is needed. img_idx=-1 supplies no image. NumPy, SciPy, pandas and Matplotlib can be imported. Variables persist within this question. Save generated PNGs under temp_output_dir; stdout and actual images are returned. No chart data table, plotting code or reference answer is supplied.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "img_idx": {
+                "type": "integer",
+                "default": -1
+              }
+            },
+            "required": [
+              "code"
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "temperature": 0,
+  "top_p": 0.8,
+  "top_k": 20,
+  "presence_penalty": 1.5,
+  "repetition_penalty": 1.0,
+  "seed": 1729,
+  "total_completion_token_budget": 16384,
+  "direct_max_turns": 1,
+  "agent_max_turns": 12,
+  "agent_max_tool_calls": 6,
+  "max_model_len": 65536,
+  "max_images_per_prompt": 8,
+  "mm_processor_kwargs": {
+    "min_pixels": 802816,
+    "max_pixels": 3211264
+  },
+  "agent_turn_token_cap": null,
+  "datasets": {
+    "RQ": 1000,
+    "DQ": 4000,
+    "ChartQAPro": 1948,
+    "ChartQA": 2500,
+    "ChartX": 1152,
+    "ReachQA": 2000,
+    "ChartBench": 18900
+  },
+  "binary_prompt_version": "chartbench-official-prompt-v1",
+  "model": "ChartAdept",
+  "checkpoint": "models/gspo-step162",
+  "primary_method": "zoom_python",
+  "checkpoint_step": 162,
+  "methods": {
+    "zoom_python": "Autonomous Zoom and Python"
+  }
+}

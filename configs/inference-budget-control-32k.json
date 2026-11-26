@@ -1,0 +1,7 @@
+{
+  "implementation_label": "budget-control-32k-structured-final",
+  "total_completion_token_budget": 32768,
+  "final_answer_reserve_tokens": 4096,
+  "structured_final_answer": true,
+  "temperature": 0.0
+}

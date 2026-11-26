@@ -1,0 +1,14 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "chartadept"
+version = "0.1.0"
+description = "ChartAdept training, chart-agent inference, and evaluation code"
+requires-python = ">=3.12,<3.13"
+readme = "README.md"
+license = {file = "LICENSE"}
+
+[tool.setuptools.packages.find]
+include = ["chartadept*"]

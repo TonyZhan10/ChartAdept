@@ -1,0 +1,6 @@
+{
+  "implementation_label": "chart-tool-free-v1",
+  "system_prompt": "You answer questions about charts using the original image. No tools are available. Read axis units, legends and subplot labels carefully. Use only values actually visible in the images; no underlying data table or reference answer is supplied. Original images remain in the conversation. Explain your evidence briefly and end with <answer>...</answer>.",
+  "unavailable_tool_response": "No tool was executed. Tools are unavailable. Continue using the original chart and complete your answer, ending with <answer>...</answer>.",
+  "max_turns": 12
+}

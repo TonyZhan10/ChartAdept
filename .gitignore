@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.env
+.env.*
+api-config.json
+*-api-key.txt
+configs/compass-rubric.json
+data/
+models/
+outputs/
+*.safetensors
+*.parquet
+*.arrow
+*.log
+.DS_Store

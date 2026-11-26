@@ -1,0 +1,81 @@
+{
+  "id": "RQ-913",
+  "mode": "crop_python",
+  "question": "What is the absolute difference in temperature range between subplot (a) and subplot (c)?",
+  "final_answer": "1.5",
+  "reference_answer": "1.5",
+  "tool_calls": 3,
+  "responses": [
+    "I need to read the colorbar ranges for subplot (a) and subplot (c). Let me zoom into both colorbars.\n",
+    "Subplot (a) colorbar ranges from -19.4 to -21.4, so range = 2.0. Now zoom into subplot (c) colorbar.\n",
+    "Subplot (c) colorbar ranges from -19.6 to -20.1, so range = 0.5. Subplot (a) range = 2.0. Absolute difference = 2.0 - 0.5 = 1.5.\n\n",
+    "Subplot (a) range = 2.0, subplot (c) range = 0.5, absolute difference = 1.5.\n\n<answer>1.5</answer>"
+  ],
+  "benchmark": "CharXiv-RQ",
+  "official_id": 913,
+  "input_size": [
+    1024,
+    824
+  ],
+  "tool_calls_recorded": [
+    {
+      "name": "image_zoom_in_tool",
+      "arguments": {
+        "bbox_2d": [
+          350,
+          10,
+          480,
+          410
+        ],
+        "label": "subplot (a) colorbar",
+        "img_idx": 0
+      },
+      "status": "Success",
+      "stdout": "",
+      "source_bbox_pixels": [
+        358,
+        8,
+        491,
+        337
+      ],
+      "after_turn": 1,
+      "observed_in_turn": 2
+    },
+    {
+      "name": "image_zoom_in_tool",
+      "arguments": {
+        "bbox_2d": [
+          650,
+          540,
+          780,
+          920
+        ],
+        "label": "subplot (c) colorbar",
+        "img_idx": 0
+      },
+      "status": "Success",
+      "stdout": "",
+      "source_bbox_pixels": [
+        665,
+        444,
+        798,
+        758
+      ],
+      "after_turn": 2,
+      "observed_in_turn": 3
+    },
+    {
+      "name": "image_code_tool",
+      "arguments": {
+        "code": "a_range = abs(-19.4 - (-21.4))\nc_range = abs(-19.6 - (-20.1))\nprint(a_range, c_range, round(abs(a_range - c_range), 1))",
+        "img_idx": -1
+      },
+      "status": "Success",
+      "stdout": "2.0 0.5 1.5\n",
+      "source_bbox_pixels": null,
+      "after_turn": 3,
+      "observed_in_turn": 4
+    }
+  ],
+  "prompt": "What is the absolute difference in temperature range between subplot (a) and subplot (c)?\n    * Your final answer must be a number with 1 decimal places."
+}

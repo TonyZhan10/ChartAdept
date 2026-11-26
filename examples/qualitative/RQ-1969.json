@@ -1,0 +1,19 @@
+{
+  "id": "RQ-1969",
+  "mode": "direct",
+  "question": "Comparing at the same π, is the y-axis value positively or negatively correlated with τ?",
+  "final_answer": "Negatively correlated",
+  "reference_answer": "negative",
+  "tool_calls": 0,
+  "responses": [
+    "At any fixed π, the solid line (τ=10 years) is above the dashed line (τ=20 years). As τ increases, the y-axis value decreases. So y is negatively correlated with τ.\n<answer>Negatively correlated</answer>"
+  ],
+  "benchmark": "CharXiv-RQ",
+  "official_id": 1969,
+  "input_size": [
+    1024,
+    741
+  ],
+  "tool_calls_recorded": [],
+  "prompt": "Comparing at the same π, is the y-axis value positively or negatively correlated with τ?\n    * If there are options in the question, your final answer must conform to one of the options.\n    * If there are additional instructions in the question, follow them accordingly.\n    * If there are neither options nor additional instructions, you are allowed to respond with a short phrase only."
+}

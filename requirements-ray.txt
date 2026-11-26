@@ -1,0 +1,9 @@
+# Additional packages for the multi-node Ray runtime.
+vllm==0.11.0
+prometheus-fastapi-instrumentator==7.1.0
+verl==0.7.1
+ray==2.54.0
+tensordict==0.10.0
+hydra-core==1.3.7
+tensorboard==2.21.0
+wandb==0.31.0

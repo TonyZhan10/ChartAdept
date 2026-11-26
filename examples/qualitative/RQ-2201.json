@@ -1,0 +1,68 @@
+{
+  "id": "RQ-2201",
+  "mode": "crop",
+  "question": "What is the FDR value approximately when Power is at 0.5?",
+  "final_answer": "0.025",
+  "reference_answer": "0.025",
+  "tool_calls": 2,
+  "responses": [
+    "I need to find the x-value where Power = 0.5, then read the corresponding FDR value. Let me zoom into both panels to read the points precisely.\n",
+    "In the Power panel, Power=0.5 occurs at x≈4 (point at x=4 sits on the 0.5 gridline). Now I need the FDR value at x=4. Let me zoom into the FDR panel.\n",
+    "From the Power panel, Power=0.5 corresponds to x≈4 (the point at x=4 sits on the 0.5 gridline). In the FDR panel, at x=4 the point lies on the 0.025 gridline. Thus FDR ≈ 0.025 when Power = 0.5.\n\n<answer>0.025</answer>"
+  ],
+  "benchmark": "CharXiv-RQ",
+  "official_id": 2201,
+  "input_size": [
+    1024,
+    327
+  ],
+  "tool_calls_recorded": [
+    {
+      "name": "image_zoom_in_tool",
+      "arguments": {
+        "bbox_2d": [
+          500,
+          0,
+          1000,
+          1000
+        ],
+        "label": "Power panel",
+        "img_idx": 0
+      },
+      "status": "Success",
+      "stdout": "",
+      "source_bbox_pixels": [
+        512,
+        0,
+        1024,
+        327
+      ],
+      "after_turn": 1,
+      "observed_in_turn": 2
+    },
+    {
+      "name": "image_zoom_in_tool",
+      "arguments": {
+        "bbox_2d": [
+          0,
+          0,
+          500,
+          1000
+        ],
+        "label": "FDR panel",
+        "img_idx": 0
+      },
+      "status": "Success",
+      "stdout": "",
+      "source_bbox_pixels": [
+        0,
+        0,
+        512,
+        327
+      ],
+      "after_turn": 2,
+      "observed_in_turn": 3
+    }
+  ],
+  "prompt": "What is the FDR value approximately when Power is at 0.5?\n    * Your final answer must be grounded to a number that is exlicitly written and relevant to the question in the chart, even if it's an approximate value.\n    * You are allowed to extract numbers within some text when needed."
+}

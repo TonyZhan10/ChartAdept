@@ -1,0 +1,12 @@
+# Native serving and full-response evaluation; Python 3.12, CUDA 12.8.
+vllm==0.11.0
+transformers==4.57.6
+qwen-vl-utils==0.0.14
+aiohttp==3.14.5
+pillow==11.3.0
+numpy==1.26.4
+scipy==1.17.1
+pandas==2.3.3
+matplotlib==3.11.2
+pyyaml==6.0.3
+safetensors==0.7.0

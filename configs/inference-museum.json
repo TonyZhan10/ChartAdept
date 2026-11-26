@@ -1,0 +1,10 @@
+{
+  "implementation_label": "chartmuseum-32k-conditional-answer",
+  "total_completion_token_budget": 32768,
+  "final_answer_reserve_tokens": 4096,
+  "structured_final_answer": true,
+  "temperature": 0.7,
+  "stop": ["</answer>"],
+  "include_stop_str_in_output": true,
+  "stop_token_ids": [151645, 151643]
+}
