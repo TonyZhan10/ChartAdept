@@ -1,0 +1,61 @@
+{
+  "RQ-1969": {
+    "input": "source/rq-1969-input.jpg",
+    "crops": [],
+    "crop_boxes": [],
+    "benchmark": "CharXiv-RQ",
+    "license": "CC-BY-SA-4.0",
+    "dataset_url": "https://huggingface.co/datasets/princeton-nlp/CharXiv",
+    "original_paper": "https://arxiv.org/abs/2202.10721"
+  },
+  "RQ-2201": {
+    "input": "source/rq-2201-input.jpg",
+    "crops": [
+      "source/rq-2201-crop-1.png",
+      "source/rq-2201-crop-2.png"
+    ],
+    "crop_boxes": [
+      [
+        512,
+        0,
+        1024,
+        327
+      ],
+      [
+        0,
+        0,
+        512,
+        327
+      ]
+    ],
+    "benchmark": "CharXiv-RQ",
+    "license": "CC-BY-SA-4.0",
+    "dataset_url": "https://huggingface.co/datasets/princeton-nlp/CharXiv",
+    "original_paper": "https://arxiv.org/abs/2104.08279"
+  },
+  "RQ-913": {
+    "input": "source/rq-913-input.jpg",
+    "crops": [
+      "source/rq-913-crop-1.png",
+      "source/rq-913-crop-2.png"
+    ],
+    "crop_boxes": [
+      [
+        358,
+        8,
+        491,
+        337
+      ],
+      [
+        665,
+        444,
+        798,
+        758
+      ]
+    ],
+    "benchmark": "CharXiv-RQ",
+    "license": "CC-BY-SA-4.0",
+    "dataset_url": "https://huggingface.co/datasets/princeton-nlp/CharXiv",
+    "original_paper": "https://arxiv.org/abs/2010.15793"
+  }
+}

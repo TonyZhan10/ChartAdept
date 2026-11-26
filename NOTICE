@@ -25,5 +25,10 @@ relicensed or bundled as original ChartAdept code.
 https://github.com/starriver030515/ChartVerse/blob/main/eval/verify.py
 
 The three qualitative examples describe held-out CharXiv-RQ trajectories.
-Benchmark images are obtained separately from CharXiv and are not bundled.
+The three case illustrations and their source chart/crop assets in docs/assets/,
+along with the associated records in examples/qualitative/,
+are distributed under CC BY-SA 4.0, following the CharXiv dataset license.
+Attribution, original source-paper links, and the changes made for display
+are documented in docs/assets/README.md. Full benchmarks are not bundled.
 https://github.com/princeton-nlp/CharXiv
+https://huggingface.co/datasets/princeton-nlp/CharXiv

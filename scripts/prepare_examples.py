@@ -1,4 +1,4 @@
-"""Prepare the three held-out examples using separately obtained CharXiv images."""
+"""Prepare the three held-out examples from the bundled or official CharXiv images."""
 import argparse
 import json
 from pathlib import Path
@@ -9,16 +9,19 @@ from PIL import Image
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--charxiv-images', type=Path, required=True,
-                        help='Official CharXiv images directory containing 1969.jpg, 2201.jpg, and 913.jpg.')
+    parser.add_argument('--charxiv-images', type=Path,
+                        help='Optional official CharXiv images directory; defaults to the three bundled examples.')
     parser.add_argument('--output', type=Path, required=True)
     args = parser.parse_args()
     args.output.mkdir(parents=True, exist_ok=True)
-    records = Path(__file__).resolve().parents[1] / 'examples/qualitative'
+    root = Path(__file__).resolve().parents[1]
+    records = root / 'examples/qualitative'
+    sources = json.loads((root / 'docs/assets/sources.json').read_text())
     questions = []
     for path in sorted(records.glob('RQ-*.json')):
         case = json.loads(path.read_text())
-        source = args.charxiv_images / f'{case["official_id"]}.jpg'
+        source = (args.charxiv_images / f'{case["official_id"]}.jpg' if args.charxiv_images
+                  else root / 'docs/assets' / sources[case['id']]['input'])
         with Image.open(source) as image:
             if list(image.size) != case['input_size']:
                 raise ValueError(f'{source}: expected the evaluation image size {case["input_size"]}, got {image.size}')

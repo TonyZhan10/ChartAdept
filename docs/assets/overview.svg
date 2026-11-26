@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="640" viewBox="0 0 1600 640">
+<title>ChartAdept inference: answer directly or call tools and observe their results</title>
+<defs><marker id="arrow" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="14" markerHeight="14" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L12,6 L0,12 Z" fill="#466575"/></marker>
+<clipPath id="tools"><rect x="1030" y="350" width="470" height="150" rx="24"/></clipPath></defs>
+<rect width="1600" height="640" rx="28" fill="#F5F8FA"/>
+<g font-family="DejaVu Serif, Georgia, serif" fill="#183442">
+<text x="64" y="75" font-size="38" font-weight="bold">Answer directly or use a tool</text>
+<text x="64" y="119" font-size="25" fill="#526773">Each real tool observation returns to the policy before its next decision.</text>
+<rect x="64" y="200" width="290" height="250" rx="24" fill="white" stroke="#D9E3E8" stroke-width="2"/>
+<text x="209" y="244" text-anchor="middle" font-size="28" font-weight="bold">Chart + question</text>
+<path d="M110 280 V366 H305" fill="none" stroke="#637C89" stroke-width="3"/>
+<rect x="134" y="327" width="30" height="39" fill="#BCD3DF"/><rect x="184" y="302" width="30" height="64" fill="#80B9C3"/><rect x="234" y="281" width="30" height="85" fill="#117E83"/>
+<rect x="95" y="394" width="228" height="34" rx="9" fill="#EDF2F5"/>
+<text x="209" y="419" text-anchor="middle" font-size="22">Question</text>
+<path d="M354 325 H480" fill="none" stroke="#466575" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="484" y="190" width="330" height="270" rx="28" fill="#183442"/>
+<text x="649" y="265" text-anchor="middle" font-size="44" font-weight="bold" fill="white">ChartAdept</text>
+<text x="649" y="312" text-anchor="middle" font-size="25" fill="#C7E0E5">Read · reason · choose</text>
+<path d="M522 340 H776" stroke="#496674" stroke-width="2"/>
+<text x="649" y="383" text-anchor="middle" font-size="25" fill="white">Select the next action</text>
+<text x="649" y="424" text-anchor="middle" font-size="22" fill="#C7E0E5">Answer · Zoom · Python</text>
+<path d="M814 245 H1048" fill="none" stroke="#466575" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="932" y="222" text-anchor="middle" font-size="24">Answer</text>
+<rect x="1050" y="185" width="450" height="108" rx="24" fill="#E4F3EE" stroke="#ABD4C5" stroke-width="2"/>
+<text x="1275" y="233" text-anchor="middle" font-size="31" font-weight="bold" fill="#176B62">Final answer</text>
+<text x="1275" y="270" text-anchor="middle" font-size="22" fill="#176B62">Return the complete response</text>
+<path d="M814 392 H1028" fill="none" stroke="#466575" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="922" y="368" text-anchor="middle" font-size="24">Act</text>
+<g clip-path="url(#tools)"><rect x="1030" y="350" width="235" height="150" fill="#EAF2FB"/><rect x="1265" y="350" width="235" height="150" fill="#FFF1DF"/></g>
+<rect x="1030" y="350" width="470" height="150" rx="24" fill="none" stroke="#D9E3E8" stroke-width="2"/>
+<text x="1147" y="402" text-anchor="middle" font-size="26" font-weight="bold" fill="#346D9E">Zoom / Crop</text>
+<text x="1147" y="446" text-anchor="middle" font-size="22" fill="#346D9E">Returned image</text>
+<text x="1382" y="402" text-anchor="middle" font-size="26" font-weight="bold" fill="#AD661E">Python</text>
+<text x="1382" y="446" text-anchor="middle" font-size="22" fill="#AD661E">stdout / image</text>
+<path d="M1265 500 V580 H649 V462" fill="none" stroke="#466575" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="974" y="552" text-anchor="middle" font-size="25" fill="#526773">Observe the actual result</text>
+</g></svg>

@@ -1,16 +1,30 @@
-# ChartAdept
-
-**ChartAdept: Learning to Answer and Act with Verified Chart Trajectories**
+<h1 align="center">ChartAdept</h1>
+<p align="center"><strong>Learning to Answer and Act with Verified Chart Trajectories</strong></p>
+<p align="center">
+  <a href="https://huggingface.co/TonyZhan/ChartAdept">🤗 Model weights</a> ·
+  <a href="#results">Results</a> ·
+  <a href="#examples">Visual examples</a> ·
+  <a href="#installation-and-inference">Quickstart</a> ·
+  <a href="CITATION.bib">Citation</a>
+</p>
 
 ChartAdept answers scientific-chart questions directly or obtains additional visual evidence with Zoom and Python. This repository provides training and inference implementations, the tool runtime, evaluation code, reported results, and three recorded qualitative examples.
 
+![ChartAdept inference overview: answer directly or use Zoom and Python, then observe and decide again.](docs/assets/overview.png)
+
 The paper's training corpus and its data construction and verification pipeline are not included in this release. Training entry points accept user-provided data. Training-reward scoring and benchmark evaluation are included.
+
+## Results
+
+**66.15% average accuracy** across ten metrics, **+9.78 percentage points** over the same Qwen3-VL-4B-Instruct base agent.
+
+![Reported accuracies for ChartAdept and the same-interface Qwen3-VL-4B base agent across ten metrics and their average.](docs/assets/results.png)
+
+Values are from main-paper Table 2: 32,500 questions across seven benchmarks. The main agent protocol uses 16K greedy decoding; ChartMuseum uses the shared 32K, temperature-0.7 setting. [Full reported table](results/reported-main-table.csv) · [Evaluation protocol](docs/evaluation.md) · [Editable plot](docs/assets/results.svg)
 
 ## Model
 
-The final model is the GSPO step-162 export based on `Qwen/Qwen3-VL-4B-Instruct`. The checkpoint includes all four weight shards, tokenizer, image processor, and chat template. The original float32 export is approximately 19.3 GB; inference loads it in BF16. The public weight download location will be added when the model repository is published.
-
-For a local checkout with the supplied checkpoint folder, use `../chartadept-model` in the commands below.
+The final [**TonyZhan/ChartAdept** checkpoint](https://huggingface.co/TonyZhan/ChartAdept) is the GSPO step-162 export based on `Qwen/Qwen3-VL-4B-Instruct`. It includes all four weight shards, tokenizer, image processor, and chat template. The original float32 export is approximately 19.3 GB; inference loads it in BF16.
 
 ## Installation and inference
 
@@ -22,6 +36,7 @@ source .venv/bin/activate
 pip install -r requirements-inference.txt
 pip install -e . --no-deps
 
+hf download TonyZhan/ChartAdept --local-dir ../chartadept-model
 python -m chartadept.serve --model ../chartadept-model --port 8237 --max-sequences 1
 ```
 
@@ -47,19 +62,27 @@ Use `--preset museum` for the main ChartMuseum setting. All agent presets permit
 
 ## Examples
 
-The saved examples are held-out benchmark cases, not training samples:
+All three examples use the **autonomous interface**. They show a direct response, crop-only reasoning, and a trajectory combining cropping with computation. The images, tool calls, and answers come from saved CharXiv-RQ evaluation records.
 
-| Example | Observed behavior | Saved answer |
-|---|---|---|
-| CharXiv RQ-1969 | Direct answer, no tool calls | Negatively correlated |
-| CharXiv RQ-2201 | Two Zoom calls linking Power and FDR | 0.025 |
-| CharXiv RQ-913 | Two Zoom calls followed by Python | 1.5 |
+### Direct response
 
-[`examples/qualitative`](examples/qualitative) contains the original question, saved responses, actual tool arguments, and stdout. Obtain the benchmark images separately from [CharXiv](https://github.com/princeton-nlp/CharXiv).
+![RQ-1969: the original chart supports a negative relationship, and ChartAdept answers without a tool call.](docs/assets/case-direct.png)
+
+### Crop only
+
+![RQ-2201: two actual crops locate the Simes parameter in the Power panel and read the corresponding FDR, yielding 0.025.](docs/assets/case-crop.png)
+
+### Crop + Python
+
+![RQ-913: two actual colorbar crops provide ranges of 2.0 and 0.5; the recorded Python call returns their absolute difference, 1.5.](docs/assets/case-crop-python.png)
+
+[`examples/qualitative`](examples/qualitative) contains the questions, saved responses, actual tool arguments, and stdout. The three input images are bundled with these illustrations under [CC BY-SA 4.0, with source attribution](docs/assets/README.md). The complete benchmark is available from [CharXiv](https://github.com/princeton-nlp/CharXiv).
+
+<details>
+<summary><strong>Run or replay these examples</strong></summary>
 
 ```bash
-python scripts/prepare_examples.py --charxiv-images /path/to/CharXiv/images \
-  --output ../chartadept-runs/examples
+python scripts/prepare_examples.py --output ../chartadept-runs/examples
 
 # Replay the recorded tools without calling a model.
 python -m chartadept.replay_examples \
@@ -71,6 +94,10 @@ python -m chartadept.infer --server http://127.0.0.1:8237 \
   --questions ../chartadept-runs/examples/questions.jsonl \
   --output ../chartadept-runs/fresh-examples
 ```
+
+To use separately downloaded CharXiv images, pass `--charxiv-images /path/to/CharXiv/images` to the preparation script.
+
+</details>
 
 ## Training and evaluation
 
@@ -92,4 +119,4 @@ These are CPU checks of tools, the interaction loop, grading preparation, statis
 
 ## License and citation
 
-Original code is licensed under [Apache 2.0](LICENSE). See [NOTICE](NOTICE) for upstream projects and separately licensed assets. Use [CITATION.bib](CITATION.bib) to cite the manuscript.
+Original code, the inference schematic, and the reported-results plot use [Apache 2.0](LICENSE). The CharXiv case illustrations and chart assets use **CC BY-SA 4.0**, with [attribution and modification notes](docs/assets/README.md). See [NOTICE](NOTICE) for upstream projects. Use [CITATION.bib](CITATION.bib) to cite the manuscript.
