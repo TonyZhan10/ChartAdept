@@ -1,6 +1,7 @@
 """Render README figures from reported results and three saved inference cases."""
 import json
 from pathlib import Path
+import subprocess
 
 import cairosvg
 import matplotlib
@@ -155,6 +156,13 @@ def mixed_case():
     canvas.save(ASSETS / 'case-crop-python.png', optimize=True)
 
 
+def paper_overview():
+    """Render the author-supplied paper figure without changing its contents."""
+    subprocess.run(['pdftoppm', '-f', '1', '-l', '1', '-singlefile',
+                    '-scale-to-x', '2400', '-scale-to-y', '-1', '-png',
+                    str(ASSETS / 'paper-overview.pdf'), str(ASSETS / 'paper-overview')], check=True)
+
+
 def overview():
     svg = '''<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="640" viewBox="0 0 1600 640">
 <title>ChartAdept inference: answer directly or call tools and observe their results</title>
@@ -247,9 +255,10 @@ def results():
 
 
 if __name__ == '__main__':
+    paper_overview()
     overview()
     results()
     direct_case()
     crop_case()
     mixed_case()
-    print('Rendered overview, reported results, and all three recorded cases.')
+    print('Rendered the paper figure, optional schematic, reported results, and three recorded cases.')

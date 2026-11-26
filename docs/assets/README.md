@@ -1,6 +1,8 @@
 # README figures and attribution
 
-`overview.svg` / `overview.png` are an original schematic of the released inference interface. `results.svg` / `results.png` visualize the reported values in `results/reported-main-table.json`. These original figures and their rendering code use the repository's Apache 2.0 license.
+The README's main image is **Figure 1 from the ChartAdept paper**, supplied by the authors. `paper-overview.pdf` is an unchanged copy of the paper's `ChartAdept_Main.pdf`; `paper-overview.png` is a high-resolution display rendering of that PDF. Its illustrative interactions and demonstration review retain the original content, layout, and fonts.
+
+`overview.svg` / `overview.png` remain available as an optional schematic of the released inference interface. `results.svg` / `results.png` visualize the reported values in `results/reported-main-table.json`. These original figures and their rendering code use the repository's Apache 2.0 license.
 
 ## Recorded case illustrations
 
@@ -27,4 +29,4 @@ pip install -r requirements-visuals.txt
 python scripts/render_readme_visuals.py
 ```
 
-The renderer uses Matplotlib, Pillow, and CairoSVG. It uses DejaVu Serif, a documented substitute for Times New Roman, which was unavailable in the rendering environment. Python code uses DejaVu Sans Mono. SVG exports retain editable vector text and shapes; the case plates contain the original raster chart assets.
+The paper-figure preview requires Poppler's `pdftoppm` and preserves the supplied PDF's fonts. The other figures use Matplotlib, Pillow, and CairoSVG with DejaVu Serif, a documented substitute for Times New Roman, which was unavailable in the rendering environment. Python code uses DejaVu Sans Mono. SVG exports retain editable vector text and shapes; the case plates contain the original raster chart assets.

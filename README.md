@@ -10,7 +10,9 @@
 
 ChartAdept answers scientific-chart questions directly or obtains additional visual evidence with Zoom and Python. This repository provides training and inference implementations, the tool runtime, evaluation code, reported results, and three recorded qualitative examples.
 
-![ChartAdept inference overview: answer directly or use Zoom and Python, then observe and decide again.](docs/assets/overview.png)
+[![Figure 1 from the ChartAdept paper: illustrative interactions and demonstration review.](docs/assets/paper-overview.png)](docs/assets/paper-overview.pdf)
+
+*Figure 1 from the paper: illustrative interactions and demonstration review. Click the image to view the original PDF.*
 
 The paper's training corpus and its data construction and verification pipeline are not included in this release. Training entry points accept user-provided data. Training-reward scoring and benchmark evaluation are included.
 
