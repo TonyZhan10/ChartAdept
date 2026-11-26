@@ -15,3 +15,7 @@ outputs/
 *.arrow
 *.log
 .DS_Store
+*.ttf
+*.TTF
+*.otf
+*.ttc

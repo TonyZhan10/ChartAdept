@@ -3,7 +3,7 @@
 <defs><marker id="arrow" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="14" markerHeight="14" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L12,6 L0,12 Z" fill="#466575"/></marker>
 <clipPath id="tools"><rect x="1030" y="350" width="470" height="150" rx="24"/></clipPath></defs>
 <rect width="1600" height="640" rx="28" fill="#F5F8FA"/>
-<g font-family="DejaVu Serif, Georgia, serif" fill="#183442">
+<g font-family="Times New Roman" fill="#183442">
 <text x="64" y="75" font-size="38" font-weight="bold">Answer directly or use a tool</text>
 <text x="64" y="119" font-size="25" fill="#526773">Each real tool observation returns to the policy before its next decision.</text>
 <rect x="64" y="200" width="290" height="250" rx="24" fill="white" stroke="#D9E3E8" stroke-width="2"/>

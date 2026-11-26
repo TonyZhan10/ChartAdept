@@ -22,13 +22,18 @@ BLUE = '#346D9E'
 ORANGE = '#AD661E'
 BG = '#F5F8FA'
 LINE = '#D9E3E8'
-FONT = font_manager.findfont('DejaVu Serif')
-BOLD = font_manager.findfont(font_manager.FontProperties(family='DejaVu Serif', weight='bold'))
-MONO = font_manager.findfont('DejaVu Sans Mono')
+FONT_FAMILY = 'Times New Roman'
+# Register installed faces even if Matplotlib's persistent font cache predates them.
+for font_path in font_manager.findSystemFonts():
+    if font_manager.FontProperties(fname=font_path).get_name() == FONT_FAMILY:
+        font_manager.fontManager.addfont(font_path)
+FONT = font_manager.findfont(FONT_FAMILY, fallback_to_default=False)
+BOLD = font_manager.findfont(font_manager.FontProperties(family=FONT_FAMILY, weight='bold'),
+                             fallback_to_default=False)
 
 
-def font(size, bold=False, mono=False):
-    return ImageFont.truetype(MONO if mono else BOLD if bold else FONT, size)
+def font(size, bold=False):
+    return ImageFont.truetype(BOLD if bold else FONT, size)
 
 
 def wrap(draw, text, face, width):
@@ -150,8 +155,8 @@ def mixed_case():
     draw.rounded_rectangle((64, y + 52, 1536, y + 224), radius=14, fill='#F1F4F6')
     call = CASES[case_id]['tool_calls_recorded'][-1]
     for index, line in enumerate(call['arguments']['code'].splitlines()):
-        draw.text((86, y + 71 + index * 35), line, font=font(25, mono=True), fill=INK, anchor='lt')
-    draw.text((86, y + 181), 'stdout: ' + call['stdout'].strip(), font=font(26, mono=True), fill=TEAL, anchor='lt')
+        draw.text((86, y + 71 + index * 35), line, font=font(25), fill=INK, anchor='lt')
+    draw.text((86, y + 181), 'stdout: ' + call['stdout'].strip(), font=font(26), fill=TEAL, anchor='lt')
     answer(draw, case_id, top + 1128)
     canvas.save(ASSETS / 'case-crop-python.png', optimize=True)
 
@@ -169,7 +174,7 @@ def overview():
 <defs><marker id="arrow" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="14" markerHeight="14" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L12,6 L0,12 Z" fill="#466575"/></marker>
 <clipPath id="tools"><rect x="1030" y="350" width="470" height="150" rx="24"/></clipPath></defs>
 <rect width="1600" height="640" rx="28" fill="#F5F8FA"/>
-<g font-family="DejaVu Serif, Georgia, serif" fill="#183442">
+<g font-family="Times New Roman" fill="#183442">
 <text x="64" y="75" font-size="38" font-weight="bold">Answer directly or use a tool</text>
 <text x="64" y="119" font-size="25" fill="#526773">Each real tool observation returns to the policy before its next decision.</text>
 <rect x="64" y="200" width="290" height="250" rx="24" fill="white" stroke="#D9E3E8" stroke-width="2"/>
@@ -215,7 +220,7 @@ def results():
               'ReachQA · Reasoning', 'ReachQA · Recognition', 'ChartMuseum', 'Average (10 metrics)']
     values = np.array([float(ours['accuracy_percent'][m]) for m in metrics] + [float(ours['Avg10'])])
     reference = np.array([float(base['accuracy_percent'][m]) for m in metrics] + [float(base['Avg10'])])
-    plt.rcParams.update({'font.family': 'DejaVu Serif', 'font.size': 14,
+    plt.rcParams.update({'font.family': FONT_FAMILY, 'font.size': 14,
                          'svg.fonttype': 'none', 'axes.edgecolor': LINE,
                          'text.color': INK, 'axes.labelcolor': INK,
                          'xtick.color': MUTED, 'ytick.color': INK})

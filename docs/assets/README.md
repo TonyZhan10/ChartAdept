@@ -24,9 +24,11 @@ These are three held-out evaluation examples. No paper training samples or data 
 
 From the repository root:
 
+Install **Times New Roman** locally before regeneration. Font binaries are not included in this repository; the renderer requires the named font and does not silently substitute another family.
+
 ```bash
 pip install -r requirements-visuals.txt
 python scripts/render_readme_visuals.py
 ```
 
-The paper-figure preview requires Poppler's `pdftoppm` and preserves the supplied PDF's fonts. The other figures use Matplotlib, Pillow, and CairoSVG with DejaVu Serif, a documented substitute for Times New Roman, which was unavailable in the rendering environment. Python code uses DejaVu Sans Mono. SVG exports retain editable vector text and shapes; the case plates contain the original raster chart assets.
+The paper-figure preview requires Poppler's `pdftoppm` and preserves the supplied PDF's fonts. Generated titles, labels, annotations, and code snippets use **Times New Roman** throughout. Original chart pixels retain their original typography. Matplotlib, Pillow, and CairoSVG render the generated figures; SVG exports retain editable vector text and shapes and require the same installed font for identical appearance.
